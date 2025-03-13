@@ -1,0 +1,57 @@
+# Ignore node_modules in all subfolders
+backend/node_modules/
+frontend/node_modules/
+dashboard/node_modules/
+
+# Ignore .env files in all subfolders
+backend/.env
+frontend/.env
+dashboard/.env
+
+# Ignore build directories in all subfolders
+backend/build/
+frontend/build/
+dashboard/build/
+
+# Ignore log files
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore dependency directories
+jspm_packages/
+
+# Ignore npm cache
+.npm
+
+# Ignore eslint cache
+.eslintcache
+
+# Ignore REPL history
+.node_repl_history
+
+# Ignore debug files
+*.pid
+*.seed
+
+# Ignore coverage directories
+backend/coverage/
+frontend/coverage/
+dashboard/coverage/
+
+# Ignore serverless directories
+.serverless/
+
+# Ignore miscellaneous files
+*.bak
+*.tmp
+*.patch
+*.diff
+*.sublime-workspace
+*.sublime-project
