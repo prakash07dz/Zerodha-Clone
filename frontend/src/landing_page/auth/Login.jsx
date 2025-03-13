@@ -14,6 +14,7 @@ const Login = () => {
     setError("");
     setValidationError({});
 
+    // Validation
     const errors = {};
     if (!formData.email.trim()) errors.email = "Email is required";
     if (!formData.password.trim()) errors.password = "Password is required";
@@ -22,13 +23,17 @@ const Login = () => {
       setValidationError(errors);
       return;
     }
+
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     try {
       const res = await axios.post(`${backendUrl}/auth/login`, formData);
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("token", res.data.token); // Store token in localStorage
       console.log("Logged in successfully");
-      navigate("/dashboard");
+
+      // Redirect to the dashboard subdomain
+      window.location.href =
+        "https://dashboard-zerodha-yzui.onrender.com/dashboard";
     } catch (err) {
       const errorMessage = err.response?.data?.error || "An error occurred";
       setError(errorMessage);
