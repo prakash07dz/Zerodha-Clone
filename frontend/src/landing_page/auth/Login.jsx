@@ -6,6 +6,7 @@ const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [validationError, setValidationError] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -26,6 +27,7 @@ const Login = () => {
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
+    setIsLoading(true);
     try {
       const res = await axios.post(`${backendUrl}/auth/login`, formData);
       localStorage.setItem("token", res.data.token); // Store token in localStorage
@@ -37,6 +39,8 @@ const Login = () => {
     } catch (err) {
       const errorMessage = err.response?.data?.error || "An error occurred";
       setError(errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -92,8 +96,12 @@ const Login = () => {
                     }
                   />
                 </div>
-                <button type="submit" className="btn btn-primary w-100">
-                  Login
+                <button
+                  type="submit"
+                  className="btn btn-primary w-100"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Logging in..." : "Login"}{" "}
                 </button>
               </form>
               <p className="text-center mt-3">

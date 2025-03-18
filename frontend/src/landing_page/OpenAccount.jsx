@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const OpenAccount = () => {
   return (
@@ -10,9 +11,9 @@ const OpenAccount = () => {
           F&O trades.
         </p>
         <div className="d-flex justify-content-center">
-          <button className="btn btn-primary btn-lg w-50 w-md-25">
+          <Link to="/signup" className="btn btn-primary btn-lg w-50 w-md-25">
             Sign up for free
-          </button>
+          </Link>
         </div>
       </div>
     </div>

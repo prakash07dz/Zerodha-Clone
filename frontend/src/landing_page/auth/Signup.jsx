@@ -9,16 +9,23 @@ const Signup = () => {
     password: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
     try {
       const res = await axios.post(`${backendUrl}/auth/signup`, formData);
       console.log(res.data);
       navigate("/login");
     } catch (err) {
       console.error(err.response?.data || "Signup failed");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -78,8 +85,12 @@ const Signup = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="btn btn-primary w-100">
-                  Sign Up
+                <button
+                  type="submit"
+                  className="btn btn-primary w-100"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Signing Up..." : "Sign Up"}
                 </button>
               </form>
               <p className="text-center mt-3">
